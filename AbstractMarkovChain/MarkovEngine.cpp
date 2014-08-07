@@ -21,7 +21,6 @@ MarkovEngine::~MarkovEngine()
 
 int MarkovEngine::analyse(string input)
 {
-    cout << "Analyzing...\n\n";
     
     istringstream buf(input);
     istream_iterator<string> beg(buf), end;
@@ -33,8 +32,7 @@ int MarkovEngine::analyse(string input)
     {
         if (nodes.count(curword)==0)
         {
-            
-            cout << "Added " << curword << "\n";
+
             
             MarkovNode newnode = *new MarkovNode(curword);
             if (curword.find(".")!=string::npos)
@@ -57,23 +55,6 @@ int MarkovEngine::analyse(string input)
         nodes[prevword].markOneUp(&nodes[curword]);
         prevword = curword;
     }
-    
-    cout << "\nWords- (nexts, weights)\n";
-    
-    for(auto& curnode: this->nodes)
-    {
-        cout << "\"" <<curnode.first + "\" - (";
-        
-        map<string,FreqNode> nexts = curnode.second.getNexts();
-        for(auto& next: nexts)
-        {
-            cout << "\""<< next.first << "\"" << "," << next.second.weight << ";";
-        }
-        cout << "\b)\n";
-        
-    }
-    
-    cout << "\n\n";
     return 1;
 }
 

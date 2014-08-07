@@ -19,8 +19,6 @@ int main(int argc, const char * argv[])
     
     engine->analyse(input);
     
-    cout << "Analysed!- stored " << engine->getnumNodes() << " nodes \n";
-    
     string bleh = engine->generatenewString();
     cout << bleh;
     return 0;
